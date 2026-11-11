@@ -1,5 +1,3 @@
-# PLSC502Week12Notes
-Week 12 notes including the slides, lecture videos, coding tutorials and practice quiz with (unverified) answers
 # PLSC 502 Week 11: Estimation and Maximum Likelihood
 
 Study notes and runnable R simulations for Week 11 of PLSC 502 (Statistical Methods): interval estimation, the properties of an estimator (bias, variance, efficiency, MSE, consistency), Gauss-Markov, maximum likelihood (Normal, Exponential, Poisson, regression), likelihood ratio tests, the bootstrap, plus notes on regression diagnostics and multiple regression.
