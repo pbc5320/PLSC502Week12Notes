@@ -10,6 +10,7 @@ This sheet covers everything in the Week 11 slides, the Exponential/Poisson MLE 
 - **Not found:** the answer key for Practice Quiz 11 was not in the folder. Every solution in the practice section is my own, and every number was checked by computer.
 - **Labels you will see:** "Slides" = taken from the lecture. "Handout" = the MLE handout. "Extension" = a standard result I added to help you understand, not on the slides. "My example" = an example I made up to connect an idea to something concrete.
 - **Equations** are written in LaTeX blocks so they render properly.
+- **Quiz-time lookup:** Part 17 (last section) maps the key words in a word problem to the concept and equation you should reach for.
 
 **Heads up:** videos 2 and 3 are about regression diagnostics and multiple regression, which are not in the week\_11 slides in your folder. Parts 15 and 16 are built from the transcripts alone. If you upload those two lectures' slides, I can check the formulas and thresholds against them.
 
@@ -637,19 +638,31 @@ The quiz is paper-only (no computer), but the code is the easiest way to *see* t
 
 ## Part 11: Practice Quiz 11, all ten problems worked
 
-The answer key was not in your folder, so these solutions are mine. Try each problem cold first, then check. Where a problem has numbers, I verified them by computer.
+Each problem below starts with the question exactly as it is worded in practice_quiz_11.pdf, followed by the worked answer. The answer key was not in your folder, so these solutions are mine. Try each problem cold first, then check. Where a problem has numbers, I verified them by computer.
 
 ### Problem 1. "The likelihood is the probability that theta is true."
+
+> **Question.** Your classmate says “the likelihood L(θ) is the probability that θ is true.” Correct this statement: what is the likelihood a function of, what does it hold fixed, and how does it differ from a probability distribution over θ?
+
+**Answer.**
 
 **Correction.** The likelihood L(theta given x) = f(x given theta) is a function of the **parameter theta**, holding the **observed data x fixed**. It measures how well each candidate theta explains the data you saw. It is *not* a probability distribution over theta: it does not have to sum or integrate to 1 across theta, and it says nothing about how probable a given theta is. A probability distribution (the pdf) goes the other way: it holds theta fixed and varies the data, and it integrates to 1 over the data. (Only a Bayesian, with a prior, can talk about the probability of theta.)
 
 ### Problem 2. Mean vs median as estimators of a center
+
+> **Question.** Two unbiased estimators of the center of a symmetric distribution are available: the sample mean and the sample median. For normal data the mean has the smaller sampling variance. (a) Which estimator is preferred on efficiency grounds? (b) When might you prefer the median anyway?
+
+**Answer.**
 
 (a) The **mean**. Both are unbiased, so choose by efficiency: the one with smaller variance. The lecture simulation had 0.126 for the mean and 0.186 for the median.
 
 (b) Prefer the median when the data may contain **outliers or heavy tails** (for example, incomes, or protest counts with a few huge events), because one extreme value pulls the mean a lot but barely moves the median. In that case the mean's efficiency advantage disappears or reverses.
 
 ### Problem 3. n = 100, x-bar = 30, sigma = 10
+
+> **Question.** A sample of n = 100 has x̄ = 30; the population standard deviation is σ = 10. (a) Construct the 95% confidence interval for µ. (b) Using the interval, test H0 : µ = 33 at the 5% level and state your conclusion.
+
+**Answer.**
 
 (a) Standard error = 10 / sqrt(100) = 1.
 
@@ -660,6 +673,10 @@ The answer key was not in your folder, so these solutions are mine. Try each pro
 (b) Test H0: mu = 33. The value 33 is **outside** \[28.04, 31.96\], so **reject H0** at the 5% level. (Check with a z statistic: (30 - 33)/1 = -3, and |-3| > 1.96.)
 
 ### Problem 4. Parameter, estimator, estimate, and bias
+
+> **Question.** Distinguish the three terms: parameter, estimator, and estimate. Then write the bias formula for an estimator θ̂ and state what unbiasedness requires.
+
+**Answer.**
 
 - **Parameter:** a fixed, unknown number describing the population (for example mu).
 - **Estimator:** a rule, a formula applied to a random sample (for example x-bar = (sum of x)/n). It is a random variable with a sampling distribution.
@@ -673,11 +690,19 @@ Unbiasedness requires **E\[theta-hat\] = theta**, that is, bias equal to zero, f
 
 ### Problem 5. Biased in small samples, right in the limit
 
+> **Question.** An estimator is biased in small samples but converges to the true parameter as n → ∞. (a) Which property does it possess: unbiasedness or consistency? (b) Give a standard example of such an estimator.
+
+**Answer.**
+
 (a) **Consistency.** (It is not unbiased, because the problem says it is biased.)
 
 (b) The standard example is the **MLE of the variance**, (1/n) times the sum of (x\_i - x-bar)^2. Its expected value is ((n-1)/n) sigma-squared, so it is biased low, but (n-1)/n tends to 1, so it converges to sigma-squared.
 
 ### Problem 6. Poisson MLE with a maximum check
+
+> **Question.** Let X1, . . . , Xn be iid Poisson(λ), with log-likelihood ℓ(λ) = Σᵢ (xᵢ log λ − λ − log xᵢ!). Derive the MLE of λ by differentiating, setting the score to zero, and solving. Confirm the solution is a maximum.
+
+**Answer.**
 
 Given the log-likelihood:
 
@@ -707,6 +732,10 @@ The second derivative is negative, so the log-likelihood is concave and the solu
 
 ### Problem 7. Normal mean with known variance
 
+> **Question.** For iid N(µ, σ²) data with σ² known, the log-likelihood in µ is ℓ(µ) = c − (1/2σ²) Σᵢ (xᵢ − µ)². (a) Derive the MLE of µ. (b) In one sentence, what does checking the second-order condition establish, and why is it needed?
+
+**Answer.**
+
 (a) With the log-likelihood in mu:
 
 ```math
@@ -720,6 +749,10 @@ The second derivative is negative, so the log-likelihood is concave and the solu
 (b) The second-order condition, ell''(mu) = -n / sigma-squared < 0, establishes that the stationary point is a **maximum** (not a minimum or an inflection). You need it because setting the first derivative to zero finds *every* flat point, and it does not say which kind of flat point you have found.
 
 ### Problem 8. n = 225, x-bar = 52, sigma = 15, 99% CI
+
+> **Question.** A survey of n = 225 respondents yields mean approval x̄ = 52 with known population standard deviation σ = 15. (a) Construct the 99% confidence interval for µ (z = 2.576). (b) A 95% interval from the same data would be [50.04, 53.96]. Compare the two widths and state the general confidence–precision trade-off.
+
+**Answer.**
 
 Standard error = 15 / sqrt(225) = 15/15 = 1.
 
@@ -740,9 +773,17 @@ The 99% interval is wider. **Trade-off:** for a fixed sample size, higher confid
 
 ### Problem 9. Nonparametric bootstrap for a regression slope
 
+> **Question.** Describe the nonparametric bootstrap for the standard error of a regression slope: what is resampled, how often, what is computed each time, and how a 95% percentile interval is formed. Why is the method attractive?
+
+**Answer.**
+
 See Part 9. Short answer: **resample** the n rows (x, y pairs) of your data **with replacement** to make a bootstrap dataset of the same size; do this **B times** (say 1,000); each time **refit the regression and store the slope**; the **standard deviation** of those B slopes is the bootstrap standard error, and the **2.5th and 97.5th percentiles** form the 95% percentile interval. **Attractive** because it needs no formula for the standard error and no normal-errors assumption, and works for almost any statistic.
 
 ### Problem 10. Maximum likelihood vs Bayesian in two sentences
+
+> **Question.** Contrast maximum likelihood and Bayesian estimation in two sentences: what extra ingredient does the Bayesian approach require, and what object does each approach report? What typically happens to the difference between them as n grows large?
+
+**Answer.**
 
 The Bayesian approach needs an extra ingredient, a **prior distribution** over theta, and it reports a full **posterior distribution** for theta, whereas maximum likelihood needs only the likelihood and reports a **single point estimate** (the value that maximizes it). As n grows, the data overwhelm the prior, so the posterior concentrates near the MLE and **the two approaches converge**.
 
@@ -794,9 +835,17 @@ The pattern to notice: **one definition, one derive-and-compute, one compute-dec
 
 ### Answers to the extra practice
 
-**Extra 1.** Unbiased: E\[theta-hat\] = theta at every sample size. Consistent: theta-hat converges in probability to theta as n goes to infinity. Unbiased but not consistent: the first observation x1 as an estimate of mu (right on average, but it never improves as n grows).
+**Extra 1.**
 
-**Extra 2.** Likelihood and log-likelihood:
+> **Question.** Define consistency and unbiasedness, and name an estimator that is unbiased but not consistent.
+
+**Answer.** Unbiased: E\[theta-hat\] = theta at every sample size. Consistent: theta-hat converges in probability to theta as n goes to infinity. Unbiased but not consistent: the first observation x1 as an estimate of mu (right on average, but it never improves as n grows).
+
+**Extra 2.**
+
+> **Question.** Cabinet lifetimes (years) of four governments are 1, 2, 3, 6, modeled as i.i.d. Exponential(lambda). Derive the MLE of lambda and confirm it is a maximum, then compute it.
+
+**Answer.** Likelihood and log-likelihood:
 
 ```math
 L(\lambda)=\lambda^n e^{-\lambda\sum x_i}, \qquad \ell(\lambda)=n\log\lambda-\lambda\sum x_i
@@ -804,9 +853,21 @@ L(\lambda)=\lambda^n e^{-\lambda\sum x_i}, \qquad \ell(\lambda)=n\log\lambda-\la
 
 Derivative set to zero: n / lambda - sum of x = 0, so lambda-hat = n / (sum of x). Second derivative: -n / lambda^2 < 0, so it is a maximum. Numbers: n = 4, sum = 1 + 2 + 3 + 6 = 12, so lambda-hat = 4/12 = **1/3 per year** (about 0.333). The implied mean lifetime is 1/lambda-hat = 3 years, which equals x-bar = 3, as it should. At lambda-hat the second derivative is -4 / (1/9) = -36, negative.
 
-**Extra 3.** (a) For a Poisson, lambda-hat = x-bar = (3 + 5 + 4 + 6 + 2) / 5 = 20/5 = **4**. (b) The second derivative is -sum of x / lambda^2 = -20/16 = -1.25 < 0, so it is a maximum. (c) The approximate variance of the MLE is lambda / n, so the standard error is the square root of 4/5 = 0.894. The interval is 4 ± 1.96(0.894) = 4 ± 1.754 = **\[2.25, 5.75\]**. (d) The value 3 sits inside \[2.25, 5.75\], so you **do not reject** H0: lambda = 3. (Equivalent z = (4 - 3)/0.894 = 1.12, which is less than 1.96.) The standard-error shortcut here comes from Fisher information (Part 8, an extension), so on a real quiz the standard error would be given to you.
+**Extra 3.**
 
-**Extra 4.** (1) **False.** The likelihood need not integrate to 1 over theta; it is not a distribution over theta. (2) **False.** It divides by n and is biased downward by the factor (n-1)/n. (3) **False.** Gauss-Markov needs the five assumptions, none of which is normality. (4) **False.** The MLE of the variance is consistent but biased. (5) **True.** The log is monotonic, so it does not move the peak. (6) **False.** A 99% interval is *wider*. (7) **True.**
+> **Question.** A country had 3, 5, 4, 6 and 2 protests in five consecutive months, modeled as i.i.d. Poisson(lambda). (a) Derive and compute the MLE. (b) Verify it is a maximum. (c) Using the approximate standard error square root of (lambda-hat / n), build a 95% interval. (d) Does the interval support H0: lambda = 3?
+
+**Answer.** (a) For a Poisson, lambda-hat = x-bar = (3 + 5 + 4 + 6 + 2) / 5 = 20/5 = **4**. (b) The second derivative is -sum of x / lambda^2 = -20/16 = -1.25 < 0, so it is a maximum. (c) The approximate variance of the MLE is lambda / n, so the standard error is the square root of 4/5 = 0.894. The interval is 4 ± 1.96(0.894) = 4 ± 1.754 = **\[2.25, 5.75\]**. (d) The value 3 sits inside \[2.25, 5.75\], so you **do not reject** H0: lambda = 3. (Equivalent z = (4 - 3)/0.894 = 1.12, which is less than 1.96.) The standard-error shortcut here comes from Fisher information (Part 8, an extension), so on a real quiz the standard error would be given to you.
+
+**Extra 4.** True or false, one sentence each.
+
+1. *The likelihood integrates to 1 across values of theta.* **False.** The likelihood need not integrate to 1 over theta; it is not a distribution over theta.
+2. *The MLE of sigma-squared for normal data is unbiased.* **False.** It divides by n and is biased downward by the factor (n-1)/n.
+3. *Gauss-Markov requires normally distributed errors.* **False.** Gauss-Markov needs the five assumptions, none of which is normality.
+4. *Every consistent estimator is unbiased.* **False.** The MLE of the variance is consistent but biased.
+5. *The log-likelihood has its maximum at the same theta as the likelihood.* **True.** The log is monotonic, so it does not move the peak.
+6. *A 99% interval is narrower than a 95% interval for the same data.* **False.** A 99% interval is *wider*.
+7. *MSE equals variance plus squared bias.* **True.**
 
 ## Part 13: One-page formula sheet and pre-quiz checklist
 
@@ -1379,3 +1440,83 @@ F = \frac{(RSS_{reduced} - RSS_{full})/q}{RSS_{full}/(n-k-1)}
 3. Does collinearity bias coefficients? *(No; it inflates standard errors.) What VIF is a warning sign? (Above 5; above 10 is strong.)*
 4. Describe the residual-on-residual method in three steps.
 5. What question does the nested F test answer? *(Whether added predictors significantly improve fit over the smaller model.)*
+
+## Part 17: Word-problem decoder: key words, what they mean, what to write
+
+Use this during the quiz. Scan the problem for the words in the left column, then jump to the concept and the line to write. Wording is taken from Practice Quiz 11 and the lecture notes above. Part A is about the **command word** (what the problem wants you to do), Part B is about the **story words** (what kind of data or estimator it is), and Part C is a fast decision path.
+
+### Part A. Command words: what you are being asked to do
+
+| If the problem says... | It wants... | Write this |
+| --- | --- | --- |
+| "Correct this statement", "your classmate says" | Spot the misconception and give the right definition | Likelihood L(θ) is a function of θ with the data held fixed; it is not the probability θ is true and need not integrate to 1 over θ. Same family of errors: "p-value = probability H0 is true" and "95% probability μ is in this interval" are both wrong |
+| "Distinguish", "define", "what is the difference between" | Plain definitions, side by side | Parameter: fixed unknown number. Estimator: a rule applied to a random sample (random). Estimate: the number the rule gives on one sample. Bias(θ̂) = E[θ̂] − θ; unbiased means bias = 0 |
+| "Derive the MLE", "differentiate, set the score to zero, solve" | The five-step recipe, one step per line | L(θ) as a product → ℓ(θ) = log L → ℓ′(θ) → set ℓ′ = 0 and solve → ℓ″(θ) < 0. The "score" is the first derivative of the log-likelihood |
+| "Confirm it is a maximum", "second-order condition" | The second derivative check | Poisson: ℓ″ = −Σx/λ². Exponential: ℓ″ = −n/λ². Normal mean (σ² known): ℓ″ = −n/σ². Negative means a hill, so a maximum. Why it is needed: setting ℓ′ = 0 finds any flat point (maximum, minimum or inflection) |
+| "Construct the 95% (or 99%) confidence interval" | x̄ ± critical value × standard error | Compute SE = σ/√n first. z = 1.645 (90%), 1.96 (95%), 2.576 (99%) |
+| "Using the interval, test H0: μ = [value] at the 5% level" | The CI–test link | Value outside the 95% interval means reject H0; inside means do not reject. Cross-check: z = (x̄ − μ0)/SE and compare the absolute value of z with 1.96 |
+| "Compare the widths", "trade-off" | Confidence vs precision | Higher confidence means a wider, less precise interval. Only a larger n narrows it without losing confidence (halving the width takes 4 times the n) |
+| "Contrast ML and Bayesian" | Two-sentence comparison | Bayesian needs a prior and reports a whole posterior distribution; ML needs only the likelihood and reports one point estimate. As n grows the prior washes out and the two converge |
+| "Describe the bootstrap" | Five steps | Resample the n rows (x, y pairs) with replacement → refit and save the slope → repeat B times (about 1,000) → SD of the slopes is the standard error → 2.5th and 97.5th percentiles give the 95% interval. Attractive: no SE formula, no normal-errors assumption |
+| "Which property", "which is preferred" | Name the property from Part B, then justify in one line | See the table below |
+
+### Part B. Story words: what kind of problem is this?
+
+**Which distribution or model (MLE problems)**
+
+| Key words in the problem | Recognize it as | Estimator and check |
+| --- | --- | --- |
+| "lifetime", "duration", "how long until", "waiting time", "survival", "time until the cabinet collapses or the war ends" | **Exponential**(λ), continuous, at least 0, mean 1/λ | λ̂ = n/Σx = 1/x̄ (invert x̄). ℓ = n log λ − λΣx. ℓ″ = −n/λ² |
+| "number of", "counts", "events per month / decade / year", "coups", "protests" | **Poisson**(λ), discrete counts, mean = variance = λ | λ̂ = x̄ (keep x̄). ℓ = −nλ + Σx log λ − Σlog x!. ℓ″ = −Σx/λ² |
+| "normal", "N(μ, σ²)", "mean with known variance" | **Normal** | μ̂ = x̄. If σ² is also unknown: σ̂² = (1/n)Σ(x − x̄)², which divides by n and is biased low |
+| "coin", "heads out of n", "proportion" | Proportion MLE | p̂ = successes/n (the likelihood p^k (1−p)^(n−k) peaks at the sample proportion) |
+| "regression", "normal errors", "least squares", "residuals" | **OLS = MLE** when errors are normal | Maximizing ℓ is the same as minimizing Σ(y − β0 − β1x)². σ̂²_MLE = (1/n)Σe² (biased); unbiased version divides by n − 2 |
+| "numerical", "no closed form", "optim", "Beta" | Numerical MLE | Computer climbs the hill; hand `optim` the **negative** log-likelihood |
+| "log-likelihood", "why take logs" | Log trick | Product becomes a sum, easier to differentiate, same peak (log is monotonic), avoids underflow |
+
+**Which estimator property (definition problems)**
+
+| Key words in the problem | Recognize it as | One-line answer |
+| --- | --- | --- |
+| "on average equals the true value", "E[θ̂] = θ", "centered on the truth" | **Unbiased** | Bias = E[θ̂] − θ = 0 |
+| "systematically too high or too low", "left out a variable", "omitted", "confounder" | **Bias, usually omitted variable bias** | Needs both: the omitted variable is correlated with x and it affects y. β̃1 = β̂1 + β̂2·δ̃1. More data does not fix it |
+| "spread across samples", "sampling distribution", "repeated samples", "how much it bounces" | **Variance** | Var(x̄) = σ²/n. Precision = 1/Var |
+| "both unbiased", "smaller sampling variance", "which is preferred", "mean vs median" | **Efficiency** | Prefer the smaller variance (mean for normal data). Prefer the median with outliers or heavy tails |
+| "overall accuracy", "bias and variance together", "squared error" | **MSE** | MSE = Var + Bias². A slightly biased estimator can win on MSE |
+| "as n → ∞", "in large samples", "converges to the true value", "biased in small samples but" | **Consistency** | Biased can still be consistent. Standard example: the variance MLE dividing by n, with E = ((n−1)/n)σ² |
+| "sample mean converges", "running average", "law of large numbers" | **LLN** | x̄ₙ → μ in probability because Var(x̄) = σ²/n shrinks to 0 |
+| "best linear unbiased", "BLUE", "Gauss-Markov" | **Five assumptions** | Linear, Random sampling, No perfect collinearity, Zero conditional mean (this one gives unbiasedness), Homoscedastic. Normality is not required |
+| "reaches the lowest possible variance in large samples", "Cramér-Rao" | **MLE asymptotic efficiency** | One of three MLE properties: consistent, asymptotically efficient, asymptotically normal (Fisher information) |
+| "approximate standard error of the MLE", "Fisher information" | **SE = √(1/(n·I(θ)))** | Poisson: √(λ̂/n). Exponential: λ̂/√n. Normal mean: σ/√n |
+
+**Which interval or test (inference problems)**
+
+| Key words in the problem | Recognize it as | Use |
+| --- | --- | --- |
+| "population standard deviation is known", "σ = ..." given | **z interval** | x̄ ± z·σ/√n |
+| "sample standard deviation s", "σ unknown", small n | **t interval**, df = n − 1 | x̄ ± t·s/√n (a little wider than z) |
+| "95% confident", "interpret the interval" | Correct reading | Across repeated samples, about 95% of intervals built this way contain the true value. Not "95% probability μ is in this one" |
+| "compare a full and a restricted model", "nested", "drop a parameter", "chi-squared" | **Likelihood ratio test** | LR = 2[ℓ(full) − ℓ(reduced)] ~ χ²(df), df = number of parameters removed. 5% critical value for χ²(1) is 3.841. Big LR means reject the reduced model |
+| "resample", "with replacement", "no formula for the standard error" | **Bootstrap** | See Part A |
+| "prior", "posterior", "update beliefs" | **Bayesian** | posterior ∝ likelihood × prior |
+
+**If the quiz reaches into the regression lectures (Parts 15 and 16)**
+
+| Key words in the problem | Recognize it as | One-line answer |
+| --- | --- | --- |
+| "non-constant variance", "funnel or fan shape in residuals vs fitted", "spread grows with x" | **Heteroskedasticity** | Coefficients stay unbiased but SEs, t and p are wrong. Test: Breusch-Pagan or White (H0 is constant variance). Fix: robust (HC1) standard errors; WLS only if you know the source |
+| "outlier in x", "unusual predictor value", "pulls the line" | **Leverage** | High if h > 2p/n, p = number of parameters including the intercept |
+| "outlier in y", "large residual" | **Studentized residual** | Be concerned above about 2 or 3 in absolute value |
+| "how much would the fit change if this point were deleted" | **Cook's distance** | Combines leverage and residual size. Not every outlier is influential |
+| "predictors are highly correlated", "inflated standard errors", "VIF" | **Collinearity** | Does not bias coefficients, inflates SEs. VIF above 5 is a warning, above 10 is strong |
+| "holding other variables constant", "controlling for", "partial effect" | **Multiple regression** | Coefficient is the effect of xⱼ with the others fixed |
+| "does adding x2 and x3 improve the fit" | **Nested F test** | Same question as the LR test, using sums of squared residuals |
+
+### Part C. Fast decision path
+
+1. **Given raw data values (a list, or n and a sum) and asked for an MLE?** Look at what the numbers measure. Times or lifetimes: Exponential, so λ̂ = 1/x̄. Counts: Poisson, so λ̂ = x̄.
+2. **Given n, x̄ and a known σ?** It is a z interval. Compute SE = σ/√n first, then x̄ ± z·SE.
+3. **Asked to test a specific value?** Check whether the value is inside the interval you just built.
+4. **Asked to "derive"?** Five lines: L, ℓ, ℓ′ = 0, solve, ℓ″ < 0. Put each on its own line for partial credit.
+5. **Asked "which property" or "why"?** Match the story words in Part B, name the property, then give the one-line meaning.
+6. **Last check before moving on:** units and direction (invert x̄ for Exponential only; divide by n for the variance MLE; wider interval for higher confidence).

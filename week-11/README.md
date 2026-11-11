@@ -4,7 +4,7 @@ Study notes and runnable R simulations for Week 11 of PLSC 502 (Statistical Meth
 
 ## Contents
 
-- [`notes/week-11-estimation-and-mle.md`](notes/week-11-estimation-and-mle.md): the full notes (16 parts, including worked practice-quiz solutions and a one-page formula sheet). Equations use GitHub's math rendering.
+- [`notes/week-11-estimation-and-mle.md`](notes/week-11-estimation-and-mle.md): the full notes (17 parts, including the practice-quiz questions with worked solutions, a one-page formula sheet, and a quiz-time keyword decoder). Equations use GitHub's math rendering.
 - [`r/`](r/): the simulation code from the notes, one script per idea.
 
 | Script | What it shows | Where in the notes |
